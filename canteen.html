@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVPP Live Kitchen</title>
+    <link rel="stylesheet" href="canteen.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-page">
+        <div class="login-container">
+            <img src="college logo.jpg" alt="Logo" class="college-logo">
+            <h2>SVPP Live Kitchen</h2>
+            <input type="text" id="username" placeholder="Enter Name / Roll No" required>
+            <select id="role">
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+            </select>
+            <button id="login-btn">Login</button>
+        </div>
+    </div>
+
+    <div id="student-page" class="hidden">
+        <div class="navbar">
+            <div class="user-info-container">
+                <div id="user-info" class="user-info"></div>
+                <div class="wallet">Wallet: <span id="wallet-balance"></span></div>
+            </div>
+            <button id="logout-student" class="btn logout-btn">Logout</button>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Menu</h2>
+            <div class="menu-filters">
+                <button onclick="loadMenu('Breakfast')">Breakfast</button>
+                <button onclick="loadMenu('Lunch')">Lunch</button>
+                <button onclick="loadMenu('Dinner')">Dinner</button>
+                <button onclick="loadMenu('snacks')">Snacks</button>
+                <button onclick="loadMenu(null)">All</button>
+            </div>
+
+            <div class="menu-nav">
+                <button id="prev-btn" onclick="prevPage()">⬅ Prev</button>
+                <span id="page-info"></span>
+                <button id="next-btn" onclick="nextPage()">Next ➡</button>
+            </div>
+
+            <div id="menu" class="menu-grid"></div>
+
+            <h2 class="section-title">Your Orders</h2>
+            <ul id="order-list" class="order-list"></ul>
+            <button id="print-bill" class="btn print-btn">Print Bill</button>
+            
+            <div class="review-section">
+                <h2 class="section-title">Leave a Review</h2>
+                <div class="review-form">
+                    <select id="review-item" class="review-select"></select>
+                    <div class="rating-stars" id="rating-stars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <textarea id="review-text" placeholder="Write your review here..."></textarea>
+                    <button id="submit-review-btn" class="btn">Submit Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="staff-page" class="hidden">
+        <div class="navbar">
+            <div id="staff-info" class="user-info"></div>
+            <button id="logout-staff" class="btn logout-btn">Logout</button>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Live Orders</h2>
+            <ul id="staff-order-list" class="staff-order-list"></ul>
+
+            <h2 class="section-title">Analytics</h2>
+            <div class="reports">
+                <p>Total Sales: <span id="total-sales">0.00</span></p>
+                <p>Top Item Sold: <span id="top-item">-</span></p>
+            </div>
+
+            <h2 class="section-title">Discounts</h2>
+            <div class="discount-options-section">
+                <div class="discount-section">
+                    <h3>Item-Wise Discount</h3>
+                    <select id="discount-item"></select>
+                    <input type="number" id="discount-value" min="0" max="100" placeholder="Discount %">
+                    <button onclick="applyDiscountFromUI('item')" class="btn apply-btn">Apply</button>
+                </div>
+                <div class="discount-section">
+                    <h3>Category Discount</h3>
+                    <select id="discount-category">
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="snacks">Snacks</option>
+                    </select>
+                    <input type="number" id="category-discount-value" min="0" max="100" placeholder="Discount %">
+                    <button onclick="applyDiscountFromUI('category')" class="btn apply-btn">Apply</button>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Student Reviews & Ratings</h2>
+            <div id="reviews-list" class="reviews-list"></div>
+        </div>
+    </div>
+
+    <audio id="audio-login" src="audio1.mp3" preload="auto" loop></audio>
+    <audio id="audio-order" src="audio2.mp3" preload="auto"></audio>
+    <script src="canteen.js"></script>
+
+</body>
+</html>
